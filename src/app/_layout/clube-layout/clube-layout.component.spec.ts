@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ClubeLayoutComponent } from './clube-layout.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ClubeHeaderComponent } from '../clube-header/clube-header.component';
+import { ClubeFooterComponent } from '../clube-footer/clube-footer.component';
 
 describe('ClubeLayoutComponent', () => {
   let component: ClubeLayoutComponent;
@@ -8,9 +11,15 @@ describe('ClubeLayoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ClubeLayoutComponent ]
-    })
-    .compileComponents();
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [
+        ClubeLayoutComponent,
+        ClubeHeaderComponent,
+        ClubeFooterComponent
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

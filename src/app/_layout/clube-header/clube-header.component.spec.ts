@@ -8,9 +8,10 @@ describe('ClubeHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ClubeHeaderComponent ]
-    })
-    .compileComponents();
+      declarations: [
+        ClubeHeaderComponent
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
