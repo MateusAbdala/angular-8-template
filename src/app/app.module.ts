@@ -17,7 +17,7 @@ import { ClubeFooterComponent } from './_layout/clube-footer/clube-footer.compon
     ClubeFooterComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule
   ],
   providers: [],
