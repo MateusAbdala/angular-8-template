@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './_layout/admin-layout/admin-layout.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -8,7 +9,9 @@ const routes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     children: [
-      //paths
+      {
+        path: '', component: DashboardComponent,
+      },
     ]
   },
   // otherwise redirect to home
