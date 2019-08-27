@@ -4,10 +4,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
+import { PublicLayoutComponent } from './_layout/public-layout/public-layout.component';
 import { AuthLayoutComponent } from './_layout/auth-layout/auth-layout.component';
-import { AppHeaderComponent } from './_layout/app-header/app-header.component';
-import { AppFooterComponent } from './_layout/app-footer/app-footer.component';
+import { PublicHeaderComponent } from './_layout/public-header/public-header.component';
+import { PublicFooterComponent } from './_layout/public-footer/public-footer.component';
 import { AuthService } from './_services/auth.service';
 import { AdminLayoutComponent } from './_layout/admin-layout/admin-layout.component';
 import { AdminHeaderComponent } from './_layout/admin-header/admin-header.component';
@@ -19,9 +19,9 @@ import { AdminSideMenuComponent } from './_layout/admin-side-menu/admin-side-men
   declarations: [
     AppComponent,
     AuthLayoutComponent,
-    AppLayoutComponent,
-    AppHeaderComponent,
-    AppFooterComponent,
+    PublicLayoutComponent,
+    PublicHeaderComponent,
+    PublicFooterComponent,
     AdminLayoutComponent,
     AdminHeaderComponent,
     AdminSideMenuComponent

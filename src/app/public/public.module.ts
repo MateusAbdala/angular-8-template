@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ViewsRoutingModule } from './views-routing.module';
+import { PublicRoutingModule } from './public-routing.module';
 import { HomeComponent } from './home/home.component';
 
 
@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
   declarations: [HomeComponent],
   imports: [
     CommonModule,
-    ViewsRoutingModule
+    PublicRoutingModule
   ]
 })
-export class ViewsModule { }
+export class PublicModule { }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AuthLayoutComponent } from './_layout/auth-layout/auth-layout.component';
-import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
+import { PublicLayoutComponent } from './_layout/public-layout/public-layout.component';
 import { AdminLayoutComponent } from './_layout/admin-layout/admin-layout.component';
 import { AuthGuard } from './_helpers/auth.guard';
 
@@ -17,8 +17,8 @@ const routes: Routes = [
     // canLoad: [AuthGuard]
   },
   {
-    path: '', component: AppLayoutComponent,
-    loadChildren: () => import('./views/views.module').then(m => m.ViewsModule)
+    path: '', component: PublicLayoutComponent,
+    loadChildren: () => import('./public/public.module').then(m => m.PublicModule)
   }
 ];
 
