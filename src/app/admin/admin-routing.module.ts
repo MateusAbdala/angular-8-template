@@ -11,6 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: '', component: DashboardComponent,
+        data: { breadcrumb: 'Dashboard' }
       },
     ]
   },

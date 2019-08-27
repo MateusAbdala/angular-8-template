@@ -6,6 +6,7 @@ import { AdminLayoutComponent } from './_layout/admin-layout/admin-layout.compon
 import { AdminHeaderComponent } from './_layout/admin-header/admin-header.component';
 import { AdminSideMenuComponent } from './_layout/admin-side-menu/admin-side-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { BreadcrumbsComponent } from '../_components/breadcrumbs/breadcrumbs.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AdminLayoutComponent,
     AdminHeaderComponent,
     AdminSideMenuComponent,
-    DashboardComponent
+    DashboardComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     CommonModule,

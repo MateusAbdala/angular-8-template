@@ -1,0 +1,19 @@
+<nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+        <li *ngFor="let breadcrumb of breadcrumbs">
+            <a [routerLink]="[breadcrumb.url, breadcrumb.params]" routerLinkActive="active">{{ breadcrumb.label }}</a>
+        </li>
+        <!-- <li><a href="../">Bulma</a></li>
+        <li><a href="../">Templates</a></li>
+        <li><a href="../">Examples</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Admin</a></li> -->
+    </ul>
+</nav>
+
+<!-- <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li *ngFor="let breadcrumb of breadcrumbs">
+            <a [routerLink]="[breadcrumb.url, breadcrumb.params]" routerLinkActive="active">{{ breadcrumb.label }}</a>
+        </li>
+    </ol>
+</nav> -->
