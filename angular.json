@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "clube-vantagens-ui": {
+    "angular-8-template": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "clube-vantagens-ui:build"
+            "browserTarget": "angular-8-template:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "clube-vantagens-ui:build:production"
+              "browserTarget": "angular-8-template:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "clube-vantagens-ui:build"
+            "browserTarget": "angular-8-template:build"
           }
         },
         "test": {
@@ -117,11 +117,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "clube-vantagens-ui:serve"
+            "devServerTarget": "angular-8-template:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "clube-vantagens-ui:serve:production"
+              "devServerTarget": "angular-8-template:serve:production"
             }
           }
         },
@@ -150,5 +150,5 @@
         }
       }
     }},
-  "defaultProject": "clube-vantagens-ui"
+  "defaultProject": "angular-8-template"
 }

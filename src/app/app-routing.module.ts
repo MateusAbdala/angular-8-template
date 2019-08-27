@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AuthLayoutComponent } from './_layout/auth-layout/auth-layout.component';
-import { ClubeLayoutComponent } from './_layout/clube-layout/clube-layout.component';
+import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 
 
 const routes: Routes = [
@@ -10,7 +10,7 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: '', component: ClubeLayoutComponent,
+    path: '', component: AppLayoutComponent,
     loadChildren: () => import('./views/views.module').then(m => m.ViewsModule)
   }
 ];
