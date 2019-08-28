@@ -11,7 +11,6 @@ const routes: Routes = [
       //paths
     ]
   },
-  // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];
 
