@@ -65,8 +65,8 @@ body {
   &.welcome {
     &.is-info {
       background: $turquoise;
-      background: -webkit-linear-gradient(to right, $cyan, $turquoise);
-      background: linear-gradient(to right, $cyan, $turquoise);
+      background: -webkit-linear-gradient(to right, $blue, $turquoise);
+      background: linear-gradient(to right, $blue, $turquoise);
     }
   }
 }
