@@ -10,6 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
+    data: { breadcrumb: 'Admin' },
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
     // canLoad: [AuthGuard]
   },

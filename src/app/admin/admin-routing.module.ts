@@ -10,7 +10,8 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     children: [
       {
-        path: '', component: DashboardComponent,
+        path: '',
+        component: DashboardComponent,
         data: { breadcrumb: 'Dashboard' }
       },
     ]
