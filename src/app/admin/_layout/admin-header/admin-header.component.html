@@ -10,13 +10,13 @@
             <a class="navbar-item brand-text" routerLink="/admin">
                 Bulma Admin
             </a>
-            <div class="navbar-burger burger" data-target="navMenu">
+            <div (click)="toggleNavbar()" class="navbar-burger burger" [class.is-active]="isOpen">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
-        <div id="navMenu" class="navbar-menu">
+        <div class="navbar-menu" [class.is-active]="isOpen">
             <div class="navbar-start">
                 <a class="navbar-item" routerLink="/admin" routerLinkActive="is-active">
                     Home

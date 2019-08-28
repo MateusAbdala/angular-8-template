@@ -12,11 +12,17 @@ import { AuthenticationService } from 'src/app/_services/authentication.service'
 export class AdminHeaderComponent {
   currentUser: User;
 
+  isOpen = false;
+
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
+
+  toggleNavbar() {
+    this.isOpen = !this.isOpen;
   }
 
   logout() {
