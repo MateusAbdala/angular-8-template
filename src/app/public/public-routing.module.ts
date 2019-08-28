@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: PublicLayoutComponent,
     children: [
-      //paths
+      // paths
     ]
   },
   { path: '**', redirectTo: '' }

@@ -14,7 +14,7 @@ export class PublicHeaderComponent implements OnInit {
 
   ngOnInit() {
     this.authService.GetIssues().subscribe(res => {
-      console.log('Issue added!')
+      console.log('Issue added!');
       // this.ngZone.run(() => this.router.navigateByUrl('/issues-list'))
     });
   }
