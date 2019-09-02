@@ -2,20 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface Configuration {
-    baseUrl: string;
+    apiUrl: string;
 }
 
 @Injectable()
 export class AppConfig {
-    public baseUrl: string = null;
+    public apiUrl: string = null;
 
     constructor(private http: HttpClient) { }
 
     public load() {
-        return this.http.get('/assets/config.json').toPromise()
+        return this.http.get('./config.json').toPromise()
             .then((config: Configuration) => {
-                console.log(config['baseUrl'])
-                this.baseUrl = config.baseUrl;
+                console.log(config['apiUrl'])
+                this.apiUrl = config.apiUrl;
             });
     }
 }

@@ -21,7 +21,7 @@ export class AuthService {
 
   // POST
   CreateUser(data): Observable<User> {
-    return this.http.post<User>(`${this.env.baseUrl}/api/Usertracking/`, JSON.stringify(data), this.httpOptions)
+    return this.http.post<User>(`${this.env.apiUrl}/api/Usertracking/`, JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
@@ -30,7 +30,7 @@ export class AuthService {
 
   // GET
   GetIssue(id): Observable<User> {
-    return this.http.get<User>(`${this.env.baseUrl}/api/Usertracking/` + id)
+    return this.http.get<User>(`${this.env.apiUrl}/api/Usertracking/` + id)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
@@ -39,7 +39,7 @@ export class AuthService {
 
   // GET
   GetIssues(): Observable<User> {
-    return this.http.get<User>(`${this.env.baseUrl}/api/Usertracking/`)
+    return this.http.get<User>(`${this.env.apiUrl}/api/Usertracking/`)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
@@ -48,7 +48,7 @@ export class AuthService {
 
   // PUT
   UpdateUser(id, data): Observable<User> {
-    return this.http.put<User>(`${this.env.baseUrl}/api/Usertracking/` + id, JSON.stringify(data), this.httpOptions)
+    return this.http.put<User>(`${this.env.apiUrl}/api/Usertracking/` + id, JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
@@ -57,7 +57,7 @@ export class AuthService {
 
   // DELETE
   DeleteUser(id) {
-    return this.http.delete<User>(`${this.env.baseUrl}/api/Usertracking/` + id, this.httpOptions)
+    return this.http.delete<User>(`${this.env.apiUrl}/api/Usertracking/` + id, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
@@ -67,7 +67,7 @@ export class AuthService {
   // Error handling
   errorHandler(error) {
     let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
+    if (error && error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;
     } else {

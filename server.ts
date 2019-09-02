@@ -18,7 +18,7 @@
 import 'zone.js/dist/zone-node';
 
 import * as express from 'express';
-import {join} from 'path';
+import { join } from 'path';
 
 // Express server
 const app = express();
@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 8080;
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
-const {AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap} = require('./dist/server/main');
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap } = require('./dist/server/main');
 
 // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
 app.engine('html', ngExpressEngine({
@@ -39,6 +39,12 @@ app.engine('html', ngExpressEngine({
 
 app.set('view engine', 'html');
 app.set('views', DIST_FOLDER);
+
+app.use((req, res, next) => {
+  req.query.id = 'v';
+  req.query.product = '2.4';
+  next();
+});
 
 // Example Express Rest API endpoints
 // app.get('/api/**', (req, res) => { });
