@@ -9,6 +9,6 @@ import { environment } from '../environments/environment';
 export class AppComponent {
   title = 'angular-app';
   constructor() {
-    console.log(environment)
+    console.log(environment);
   }
 }

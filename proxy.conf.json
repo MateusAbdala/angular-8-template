@@ -1,0 +1,9 @@
+{
+    "_comment": "This is NOT FOR PRODUCTION, This configuration is ONLY for your development setup and should not be used in production.",
+    "/api/*": {
+        "target": "http://localhost:3000",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}
