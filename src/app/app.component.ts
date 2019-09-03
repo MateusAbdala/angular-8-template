@@ -7,7 +7,7 @@ import { environment } from '../environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-8-template';
+  title = 'angular-app';
   constructor() {
     console.log(environment)
   }
