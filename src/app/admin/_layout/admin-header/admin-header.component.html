@@ -18,16 +18,16 @@
         </div>
         <div class="navbar-menu" [class.is-active]="isOpen">
             <div class="navbar-start">
-                <a class="navbar-item" routerLink="/admin" routerLinkActive="is-active">
+                <a class="navbar-item" (click)="toggleNavbar()" routerLink="/admin" routerLinkActive="is-active">
                     Home
                 </a>
-                <a class="navbar-item" routerLink="/admin/orders" routerLinkActive="is-active">
+                <a class="navbar-item" (click)="toggleNavbar()" routerLink="/admin/orders" routerLinkActive="is-active">
                     Orders
                 </a>
-                <a class="navbar-item" routerLink="/admin/payments" routerLinkActive="is-active">
+                <a class="navbar-item" (click)="toggleNavbar()" routerLink="/admin/payments" routerLinkActive="is-active">
                     Payments
                 </a>
-                <a class="navbar-item" routerLink="/admin/exceptions" routerLinkActive="is-active">
+                <a class="navbar-item" (click)="toggleNavbar()" routerLink="/admin/exceptions" routerLinkActive="is-active">
                     Exceptions
                 </a>
             </div>
