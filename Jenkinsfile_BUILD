@@ -1,0 +1,56 @@
+#!groovy
+
+node {
+    currentBuild.result = "SUCCESS"
+
+    try {
+        def nodeHome = tool name: 'node-10.14.1', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+        env.PATH = "${nodeHome}/bin:${env.PATH}"
+
+        stage('Validating Project Dependencies') {
+            sh "node -v"
+            sh "npm -v"
+            deleteDir()
+        }
+
+        stage('Checkout') {
+            checkout scm
+        }
+
+        stage('Install Dependencies') {
+            sh "npm install"
+        }
+
+        stage('Test Front-end') {
+            sh "npm run test-headless"
+        }
+
+        stage('Publish Coverage Report') {
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './coverage/', reportFiles: 'index.html', reportName: 'Cobertura de testes', reportTitles: ''])
+        }
+
+        stage('Build Front-end SSR') {
+            sh "npm run build:ssr"
+        }
+
+        def appName = sh(returnStdout: true, script: 'node -pe "require(\'./package.json\').name"').trim()
+        def appVersion = sh(returnStdout: true, script: 'node -pe "require(\'./package.json\').version"').trim()
+        DOCKER_REPO_IMAGE = "${appVersion}".contains("RELEASE") ? "$DOCKER_RELEASE_REPO" : "$DOCKER_SNAPSHOT_REPO"
+
+        stage('Build Docker Image') {
+            sh "docker build -t unicred/$appName:$appVersion ."
+        }
+
+        stage('Upload Docker image to Nexus') {
+            withCredentials([usernamePassword(credentialsId: 'nexus_docker', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USER')]) {
+                sh "docker tag unicred/$appName:$appVersion $DOCKER_REPO_IMAGE/unicred/$appName:$appVersion"
+                sh "docker login -p '$DOCKER_PASSWORD' -u $DOCKER_USER $DOCKER_REPO_IMAGE"
+                sh "docker push $DOCKER_REPO_IMAGE/unicred/$appName:$appVersion"
+            }
+        }
+
+    } catch (err) {
+        currentBuild.result = "FAILURE"
+        throw err
+    }
+}

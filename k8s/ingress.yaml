@@ -1,0 +1,23 @@
+apiVersion: v1
+items:
+- apiVersion: extensions/v1beta1
+  kind: Ingress
+  metadata:
+    name: ${APP}
+    namespace: ${NAMESPACE}
+  spec:
+    rules:
+    - host: ${INGRESS_HOST}
+      http:
+        paths:
+        - backend:
+            serviceName: ${APP}
+            servicePort: ${PORT}
+    tls:
+    - hosts:
+      - ${INGRESS_HOST}
+
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

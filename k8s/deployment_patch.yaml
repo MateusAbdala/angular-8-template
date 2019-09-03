@@ -1,0 +1,10 @@
+spec:
+  template:
+    metadata:
+      labels:
+        uuid-deploy: "${UUID}"
+    spec:
+      containers:
+      - image: ${IMAGE}
+        imagePullPolicy: Always
+        name: ${APP}

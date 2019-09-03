@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ${APP}
+  namespace: ${NAMESPACE}
+spec:
+  replicas: ${REPLICAS}
+  template:
+    metadata:
+      labels:
+        app: ${APP}
+    spec:
+      containers:
+      - name: ${APP}
+        image: ${IMAGE}
+        imagePullPolicy: Always
+        env:
+         - name: REACT_APP_ACTIVE_PROFILE
+           value: ${PROFILE}
+         - name: APP_API_GATEWAY
+           value: ${APP_API_GATEWAY}
+         - name: APP_API_PLACEHOLDER
+           value: ${APP_API_PLACEHOLDER}                     
+        ports:
+          - containerPort: ${PORT}

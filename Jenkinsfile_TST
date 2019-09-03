@@ -1,0 +1,68 @@
+#!groovy
+
+def replaceValue(placeholder, value, file) {
+    sh "sed -i.bak s#\\\${$placeholder}#$value#g $file"
+}
+
+node {
+    currentBuild.result = "SUCCESS"
+
+    try {
+        def nodeHome = tool name: 'node-10.14.1', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+        env.PATH = "${nodeHome}/bin:${env.PATH}"
+
+        stage('Checkout') {
+            checkout scm
+        }
+
+        def appName = sh(returnStdout: true, script: 'node -pe "require(\'./package.json\').name"').trim()
+        def appVersion = sh(returnStdout: true, script: 'node -pe "require(\'./package.json\').version"').trim()
+        def ingressHost="$appName\\.paas-$envSite\\.e-unicred.com.br"
+        def apiUrl = "https://some-bff.paas-tst.e-unicred.com.br"
+        def appPort = "8080"
+        def namespace = "canais"
+        def target_env = "tst"
+        def replicas = "1"
+
+        def dockerImage = "unicred/${appName}:${appVersion}"
+        def deployUUID = UUID.randomUUID().toString()
+
+        println "App Name: ${appName}"
+        println "App version: ${appVersion}"
+        println "Docker image: ${dockerImage}"
+
+        DOCKER_REPO_IMAGE = "${appVersion}".contains("RELEASE") ? "$DOCKER_RELEASE_REPO" : "$DOCKER_SNAPSHOT_REPO"
+        FORCE_PULL_IMAGE = "${appVersion}".contains("SNAPSHOT") ? 1 : 0
+
+        replaceValue('PROFILE', "${target_env}", './k8s/*.yaml')
+        replaceValue('PORT', "${appPort}", './k8s/*.yaml')
+        replaceValue('APP', "${appName}", './k8s/*.yaml')
+        replaceValue('NAMESPACE', "${namespace}", './k8s/*.yaml')
+        replaceValue('REPLICAS', "${replicas}", './k8s/*.yaml')
+        replaceValue('IMAGE', "$DOCKER_REPO_IMAGE/${dockerImage}", './k8s/*.yaml')
+        replaceValue('INGRESS_HOST',"${ingressHost}",'./k8s/*.yaml')
+        replaceValue('UUID', "${deployUUID}", './k8s/*.yaml')
+
+        stage('Setting Environment Values') {
+            replaceValue('API_URL', "${apiUrl}", './dist/**/*.js')
+        }
+
+        stage("Deploy to ${target_env}") {
+            def context = 'cluster-' + "${target_env}"
+
+            println "Deploying: ${dockerImage} ..."
+            sh "kubectl apply -f ./k8s/namespace.yaml --context=$context"
+            sh "kubectl apply -f ./k8s/svc.yaml --context=$context"
+            sh "kubectl apply -f ./k8s/deployment.yaml --context=$context"
+
+            if (FORCE_PULL_IMAGE) {
+                sh "kubectl patch deployment ${appName} -n ${namespace} --context=$context -p " + '"$(cat ./k8s/deployment_patch.yaml)"'
+            }
+
+        }
+
+    } catch (err) {
+        currentBuild.result = "FAILURE"
+        throw err
+    }
+}
