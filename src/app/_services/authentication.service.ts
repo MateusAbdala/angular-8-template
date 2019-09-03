@@ -3,7 +3,6 @@ import { User } from '../_models/user';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { AppConfig } from '../app.config';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient, private env: AppConfig) {
+  constructor(private http: HttpClient) {
       this.currentUserSubject = new BehaviorSubject<User>(null);
       this.currentUser = this.currentUserSubject.asObservable();
   }
