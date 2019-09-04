@@ -40,12 +40,6 @@ app.engine('html', ngExpressEngine({
 app.set('view engine', 'html');
 app.set('views', DIST_FOLDER);
 
-app.use((req, res, next) => {
-  req.query.id = 'v';
-  req.query.product = '2.4';
-  next();
-});
-
 // Example Express Rest API endpoints
 // app.get('/api/**', (req, res) => { });
 // Serve static files from /browser
