@@ -55,3 +55,34 @@ body {
     overflow-y: scroll;
   }
 }
+
+
+.hero {
+  &.welcome {
+    &.is-info {
+      background: $turquoise;
+      background: -webkit-linear-gradient(to right, $blue, $turquoise);
+      background: linear-gradient(to right, $blue, $turquoise);
+    }
+  }
+}
+.hero.welcome .title,
+.hero.welcome .subtitle {
+  color: $white;
+}
+nav {
+  &.navbar {
+    border-top: 4px solid $blue;
+    margin-bottom: 1rem;
+    .navbar-item {
+      &.brand-text {
+        font-weight: 300;
+      }
+    }
+    .navbar-item,
+    .navbar-link {
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
+}
