@@ -43,8 +43,8 @@ node {
         replaceValue('INGRESS_HOST',"${ingressHost}",'./k8s/*.yaml')
         replaceValue('UUID', "${deployUUID}", './k8s/*.yaml')
 
-        stage('Setting Environment Values') {
-            replaceValue('API_URL', "${apiUrl}", './dist/**/*.js')
+        stage('Setting Proxy Host') {
+            replaceValue('API_URL', "${apiUrl}", './dist/server*.js')
         }
 
         stage("Deploy to ${target_env}") {

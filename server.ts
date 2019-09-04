@@ -18,10 +18,20 @@
 import 'zone.js/dist/zone-node';
 
 import * as express from 'express';
+import * as expressProxy from 'express-http-proxy';
 import { join } from 'path';
 
 // Express server
 const app = express();
+
+/**
+ * *** NOTE ON CHANGING PROXY HOST VALUE ***
+ * Angular comes with environment files that allow us to handle environment specific
+ * configurations. They do not meet the requirements of a continuous delivery setup.
+ * For easier deploys process, you can generate just one builded image using proxy 
+ * and overwrite the values such as `${API_URL}`.
+ */
+app.use('/api', expressProxy('${API_URL}'));
 
 const PORT = process.env.PORT || 8080;
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
@@ -40,8 +50,6 @@ app.engine('html', ngExpressEngine({
 app.set('view engine', 'html');
 app.set('views', DIST_FOLDER);
 
-// Example Express Rest API endpoints
-// app.get('/api/**', (req, res) => { });
 // Serve static files from /browser
 app.get('*.*', express.static(DIST_FOLDER, {
   maxAge: '1y'

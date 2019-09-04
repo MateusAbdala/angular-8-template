@@ -29,6 +29,7 @@
     "@nguniversal/module-map-ngfactory-loader": "8.1.1",
     "bulma": "^0.7.5",
     "express": "^4.15.2",
+    "express-http-proxy": "^1.5.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
-import { environment } from '../../environments/environment';
 import { User } from '../_models/user';
 
 @Injectable({
@@ -22,7 +21,7 @@ export class AuthService {
 
   // POST
   CreateUser(data): Observable<User> {
-    return this.http.post<User>(`${environment.apiUrl}/api/Usertracking/`, JSON.stringify(data), this.httpOptions)
+    return this.http.post<User>('/api/Usertracking/', JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
@@ -31,7 +30,7 @@ export class AuthService {
 
   // GET
   GetIssue(id): Observable<User> {
-    return this.http.get<User>(`${environment.apiUrl}/api/Usertracking/` + id)
+    return this.http.get<User>('/api/Usertracking/' + id)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
@@ -40,7 +39,7 @@ export class AuthService {
 
   // GET
   GetIssues(): Observable<User> {
-    return this.http.get<User>(`${environment.apiUrl}/api/Usertracking/`)
+    return this.http.get<User>('/api/Usertracking/')
       .pipe(
         retry(1),
         catchError(this.errorHandler)
@@ -49,7 +48,7 @@ export class AuthService {
 
   // PUT
   UpdateUser(id, data): Observable<User> {
-    return this.http.put<User>(`${environment.apiUrl}/api/Usertracking/` + id, JSON.stringify(data), this.httpOptions)
+    return this.http.put<User>('/api/Usertracking/' + id, JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
@@ -58,7 +57,7 @@ export class AuthService {
 
   // DELETE
   DeleteUser(id) {
-    return this.http.delete<User>(`${environment.apiUrl}/api/Usertracking/` + id, this.httpOptions)
+    return this.http.delete<User>('/api/Usertracking/' + id, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
@@ -73,7 +72,7 @@ export class AuthService {
       errorMessage = error.error.message;
     } else {
       // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = 'Error Code: ${error.status}\nMessage: ${error.message}';
     }
     console.error(errorMessage);
     return throwError(errorMessage);
